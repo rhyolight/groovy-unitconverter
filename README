@@ -1,0 +1,3 @@
+To run, compile using groovyc, then run the convert.sh script:
+
+./convert.sh 60.meters.to.miles
