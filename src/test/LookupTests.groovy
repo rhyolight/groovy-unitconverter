@@ -22,6 +22,25 @@ class LookupTests extends GroovyTestCase {
     }
 
     void test_Meters_to_Miles() {
-        assertEquals '(x / 1000) * 0.621371192', lookup.formula('meters', 'miles')
+        assertEquals '((x) / 1000) * 0.621371192', lookup.formula('meters', 'miles')
+    }
+
+    void testRecursiveMapLookup() {
+        def m = [
+                a: [b:'x,b'],
+                b: [a:'x,a', c:'x,c'],
+                c: [a:'x,a', b:'x,b', z:'x,z'],
+                z: [answer:'x,bingo!']
+        ]
+
+        def oldLookup = Lookup.lookup
+
+        Lookup.lookup = m
+
+        assertEquals 'x,b', Lookup.formula('a','b')
+        assertEquals '(x,b),c', Lookup.formula('a','c')
+        assertEquals '(((x,b),c),z),bingo!', Lookup.formula('a','answer')
+
+        Lookup.lookup = oldLookup
     }
 }
