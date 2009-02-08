@@ -8,6 +8,15 @@ import org.groovy.example.Lookup
 class LookupTests extends GroovyTestCase {
 
     def lookup = new Lookup()
+    def lookupCache
+
+    void setUp() {
+        lookupCache = Lookup.lookup
+    }
+
+    void tearDown() {
+        Lookup.lookup = lookupCache
+    }
 
     void test_Meters_to_Kilometers() {
         assertEquals 'x / 1000', lookup.formula('meters', 'kilometers')
@@ -44,8 +53,6 @@ class LookupTests extends GroovyTestCase {
         assertEquals 'x,b', Lookup.formula('a','b')
         assertEquals '(x,b),c', Lookup.formula('a','c')
         assertEquals '(((x,b),c),z),bingo!', Lookup.formula('a','answer')
-
-        Lookup.lookup = oldLookup
     }
 
     void testContains() {
@@ -65,7 +72,5 @@ class LookupTests extends GroovyTestCase {
         assertTrue Lookup.contains('c')
         assertTrue Lookup.contains('z')
         assertTrue Lookup.contains('answer')
-
-        Lookup.lookup = oldLookup
     }
 }

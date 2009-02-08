@@ -5,6 +5,7 @@ package org.groovy.example
 class UnitConversionSetup {
 
     static {
+        println 'FUCK YEAH!'
         Number.mixin UnitConversionMixin
 
         def properties = Collections.synchronizedMap([:])

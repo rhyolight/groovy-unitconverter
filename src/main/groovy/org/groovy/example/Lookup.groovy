@@ -42,7 +42,9 @@ class Lookup {
     }
 
     static boolean contains(name) {
-        if (lookup[name]) return true
+        if (lookup[name]) {
+            return true
+        }
         lookup.inject(false) { found, entry ->
             if (found) return true
             def val = entry.value
@@ -64,7 +66,7 @@ class Lookup {
                 return
             }
             lookupCrumbs << from
-            def iterFormula = formula(key, to)
+            def iterFormula = this.formula(key, to)
             if (iterFormula) {
                 result = iterFormula.replaceAll('x', "($formula)")
             }
