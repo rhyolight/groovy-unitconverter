@@ -29,6 +29,10 @@ class UnitConversionTests extends GroovyTestCase {
         assertEquals 24140.1600092000, 15.miles.to.meters
     }
 
+    void testMilesToInches() {
+        assertEquals 63360, 1.miles.to.inches
+    }
+
     void testCelciusToFahrenheit() {
         assertEquals 0, 32.fahrenheit.to.celcius
     }

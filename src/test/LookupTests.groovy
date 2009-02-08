@@ -43,4 +43,25 @@ class LookupTests extends GroovyTestCase {
 
         Lookup.lookup = oldLookup
     }
+
+    void testContains() {
+        def m = [
+                a: [b:'x,b'],
+                b: [a:'x,a', c:'x,c'],
+                c: [a:'x,a', b:'x,b', z:'x,z'],
+                z: [answer:'x,bingo!']
+        ]
+
+        def oldLookup = Lookup.lookup
+
+        Lookup.lookup = m
+
+        assertTrue Lookup.contains('a')
+        assertTrue Lookup.contains('b')
+        assertTrue Lookup.contains('c')
+        assertTrue Lookup.contains('z')
+        assertTrue Lookup.contains('answer')
+
+        Lookup.lookup = oldLookup
+    }
 }

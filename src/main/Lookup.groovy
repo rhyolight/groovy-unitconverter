@@ -8,7 +8,9 @@ class Lookup {
 
     static {
         // distance
-
+        lookup.centimeters = [
+                meters: 'x / 100'
+        ]
         lookup.meters = [
                 meters:'x',
                 kilometers: 'x / 1000'
@@ -39,7 +41,16 @@ class Lookup {
     }
 
     static boolean contains(name) {
-        lookup[name]
+        if (lookup[name]) return true
+        lookup.inject(false) { found, entry ->
+            if (found) return true
+            def val = entry.value
+            return val.inject(found) { innerFound, innerEntry ->
+                if (innerEntry.key == name) {
+                    return true
+                }
+            }
+        }
     }
 
     static def formula(from, to) {

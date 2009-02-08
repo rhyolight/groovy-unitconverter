@@ -32,8 +32,9 @@ class UnitConversionSetup {
 
         // stores any units being declared on a number
         Number.metaClass.propertyMissing = { String name ->
-//            println "propertyMissing: $name (converting? ${delegate.converting})"
-            if (!Lookup.contains(name)) throw new InvalidConversionException("Cannot convert $name to anything")
+            if (!Lookup.contains(name)) {
+                throw new InvalidConversionException("Cannot convert $name to anything")
+            }
             if (delegate.converting) {
                 delegate.converting = false
                 return delegate.to(name)
