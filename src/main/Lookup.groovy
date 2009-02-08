@@ -8,6 +8,7 @@ class Lookup {
 
     static {
         // distance
+
         lookup.meters = [
                 meters:'x',
                 kilometers: 'x / 1000'
@@ -48,7 +49,6 @@ class Lookup {
         lookup[from].each { key, formula ->
             if (result) return
             if (key in lookupCrumbs) {
-                println 'aborting'
                 return
             }
             lookupCrumbs << from

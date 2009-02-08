@@ -1,3 +1,3 @@
 #!/bin/bash
 
-groovy -cp ../../out/production/unitConverter Runner.groovy $1
+groovy -cp out/production/unitConverter src/main/Runner.groovy $1
