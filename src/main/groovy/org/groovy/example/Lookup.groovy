@@ -42,10 +42,7 @@ class Lookup {
     }
 
     static boolean contains(name) {
-        if (lookup[name]) {
-            return true
-        }
-        lookup.inject(false) { found, entry ->
+        lookup.inject(lookup[name]) { found, entry ->
             if (found) return true
             def val = entry.value
             return val.inject(found) { innerFound, innerEntry ->
@@ -57,21 +54,18 @@ class Lookup {
     }
 
     static def formula(from, to) {
-        def result = lookup[from][to]
-        if (result) return result
-
-        lookup[from].each { key, formula ->
-            if (result) return
+        lookup[from].inject(lookup[from][to]) { resultFormula, entry ->
+            if (resultFormula) return resultFormula
+            def (key, formula) = [entry.key, entry.value]
             if (key in lookupCrumbs) {
-                return
+                return null
             }
             lookupCrumbs << from
             def iterFormula = this.formula(key, to)
             if (iterFormula) {
-                result = iterFormula.replaceAll('x', "($formula)")
+                return iterFormula.replaceAll('x', "($formula)")
             }
         }
-        result
     }
 
 }
