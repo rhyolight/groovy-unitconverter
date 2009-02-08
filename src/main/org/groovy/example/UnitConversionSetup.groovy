@@ -1,3 +1,4 @@
+package org.groovy.example
 /*
  * author: Matthew Taylor
  */

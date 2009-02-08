@@ -1,10 +1,14 @@
+package org.groovy.example
+
+import org.groovy.example.InvalidConversionException
+
 /*
 * author: Matthew Taylor
 */
 class UnitConversionTests extends GroovyTestCase {
 
     void setUp() {
-        Class.forName('UnitConversionSetup')
+        Class.forName('org.groovy.example.UnitConversionSetup')
     }
 
     void testKmToMeters() {

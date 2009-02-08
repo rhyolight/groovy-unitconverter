@@ -1,6 +1,10 @@
+package org.groovy.example
+
+import org.groovy.example.Lookup
+
 /*
- * author: Matthew Taylor
- */
+* author: Matthew Taylor
+*/
 class LookupTests extends GroovyTestCase {
 
     def lookup = new Lookup()

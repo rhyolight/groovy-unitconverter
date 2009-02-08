@@ -1,6 +1,10 @@
+package org.groovy.example
+
+import org.groovy.example.InputConverter
+
 /*
- * author: Matthew Taylor
- */
+* author: Matthew Taylor
+*/
 class InputConverterTests extends GroovyTestCase {
 
     def converter
